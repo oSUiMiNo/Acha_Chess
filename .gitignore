@@ -58,3 +58,5 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+# 自分で個別に指定したい無視ファイルは MyGitIgnore という名前のフォルダを作ってそこに入れとけば無視される。
+MyGitIgnore

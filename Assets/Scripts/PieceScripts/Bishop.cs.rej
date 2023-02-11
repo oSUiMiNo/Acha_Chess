@@ -1,0 +1,16 @@
+diff a/Assets/Sclipts/PieceScripts/Bishop.cs b/Assets/Sclipts/PieceScripts/Bishop.cs	(rejected hunks)
+@@ -18,10 +18,11 @@
+                 foreach (Vector2Int Direction in Direction_Bishop)
+                 {
+                     movePlace_Grid = initialplace2 + (a * Direction);
++                    AddMoveList();
++                    RemoveMoveList();
++                    if (existPiece == true) { break; }
+                 };
+-                AddMoveList();
+-                RemoveMoveList();
+-                if (existPiece == true) { break; }
++
+             }
+         }
+         //↓書き直す前
