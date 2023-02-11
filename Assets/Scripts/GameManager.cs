@@ -37,20 +37,11 @@ public class GameManager : MonoBehaviour
 
     public void Awake()
     {
-        //DebugView.Log("げーーーーーーーむまねーーじゃーーーーーー");
-        //Singletonize();
-        //UserData.Ins.Load();
-        StartCoroutine(Awake_Co());
-    }
-
-    public IEnumerator Awake_Co()
-    {
-        yield return new WaitUntil(() => DebugView.Compo != null);
-
         DebugView.Log("げーーーーーーーむまねーーじゃーーーーーー");
         Singletonize();
         UserData.Ins.Load();
     }
+
 
     public void Start()
     {
