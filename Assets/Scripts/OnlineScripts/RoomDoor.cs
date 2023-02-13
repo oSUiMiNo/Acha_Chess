@@ -266,14 +266,14 @@ public class RoomDoor : MonoBehaviourPunCallbacks
     GameObject LoadNetWorkObject(string name, Vector3 position, Quaternion rotation)
     {
         GameObject obj = PhotonNetwork.Instantiate(name, position, rotation);
-        obj.name = obj.name.Replace("(Clone)", "");
+        //obj.name = obj.name.Replace("(Clone)", "");
         return obj;
     }
 
     GameObject LoadRoomObject(string name, Vector3 position, Quaternion rotation)
     {
         GameObject obj = PhotonNetwork.InstantiateRoomObject(name, position, rotation);
-        obj.name = obj.name.Replace("(Clone)", "");
+        //obj.name = obj.name.Replace("(Clone)", "");
         return obj;
     }
 

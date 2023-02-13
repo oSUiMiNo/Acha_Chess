@@ -107,7 +107,7 @@ public class MovePiece : MonoBehaviourPunCallbacks
 
         yield return new WaitForSeconds(moveTime);
 
-        //AudioManager.Units[AudioName.SE0].PlayOneShot();
+        AudioManager.Units[AudioName.SE0].PlayOneShot();
 
         //AudioSource se = AudioManager.Sources[AudioName.SE0];
         //se.PlayOneShot(se.clip);
@@ -128,7 +128,7 @@ public class MovePiece : MonoBehaviourPunCallbacks
         
         yield return new WaitForSeconds(moveTime);
 
-        //AudioManager.Units[AudioName.SE1].PlayOneShot();
+        AudioManager.Units[AudioName.SE1].PlayOneShot();
 
         //AudioSource se = AudioManager.Sources[AudioName.SE1 ];
         //se.PlayOneShot(se.clip);
@@ -188,7 +188,6 @@ public class MovePiece : MonoBehaviourPunCallbacks
     [PunRPC]
     private void NextPlayer()
     {
-        //GameManager.ins.NextPlayer();
         SceneHandler_Game.Compo.NextPlayer();
     }
 }
