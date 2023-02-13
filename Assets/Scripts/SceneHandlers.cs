@@ -43,6 +43,7 @@ public class SceneHandler_Menu : SingletonCompo<SceneHandler_Menu>, ISceneHandle
 
     public event System.Action OnInitScene;
     public event System.Action OnExitScene;
+    public bool IsInitialized = false;
 
     public void LoadScene()
     {
@@ -112,6 +113,7 @@ public class SceneHandler_Menu : SingletonCompo<SceneHandler_Menu>, ISceneHandle
         //    }
         //}
         DebugView.Log("--------------------スタート画面初期化完了--------------------");
+        IsInitialized = true;
     }
 
 
@@ -244,6 +246,7 @@ public class SceneHandler_Game : SingletonCompo<SceneHandler_Game>, ISceneHandle
 
     public event System.Action OnInitScene;
     public event System.Action OnExitScene;
+    public bool IsInitialized = false;
 
     public void LoadScene()
     {
@@ -256,8 +259,7 @@ public class SceneHandler_Game : SingletonCompo<SceneHandler_Game>, ISceneHandle
         AdManager.HideAd(AdType.BannerDefault);
         GameManager.Compo.roopGameCounter.Count();
 
-        if (RoomDoor.ins.IsOnline)
-        { RoomDoor.ins.Join(); }
+        if (RoomDoor.ins.IsOnline) RoomDoor.ins.Join();
         yield return new WaitForSeconds(2.5f); //コルーチンを一時中断して2.5秒後に次の行からの処理再開
        
         pieceManager = GameObject.Find("ChessSet(Clone)").GetComponent<PieceManager>();
@@ -269,6 +271,7 @@ public class SceneHandler_Game : SingletonCompo<SceneHandler_Game>, ISceneHandle
         whiteturn = true;
 
         Debug.Log("--------------------ゲーム初期化完了--------------------");  //Photonの処理も入るのですぐには完了しない。
+        IsInitialized = true;
     }
 
     public IEnumerator ExitScene()
@@ -325,6 +328,7 @@ public class SceneHandler_Setting : SingletonCompo<SceneHandler_Setting>, IScene
 {
     public event System.Action OnInitScene;
     public event System.Action OnExitScene;
+    public bool IsInitialized = false;
 
     public void LoadScene()
     {
@@ -335,8 +339,8 @@ public class SceneHandler_Setting : SingletonCompo<SceneHandler_Setting>, IScene
     {
         yield return new WaitForSeconds(0);
         OnInitScene?.Invoke();
-
         //AudioManager.Compo.SetSlider();
+        IsInitialized = true;
     }
     public IEnumerator ExitScene()
     {

@@ -8,6 +8,7 @@ using System;
 public class DebugView : MonoBehaviour
 {
     TextMeshProUGUI text;
+    static List<string> Buffer = new List<string>();
 
     #region 【シングルトン化】 ===================================================================
 
@@ -34,8 +35,6 @@ public class DebugView : MonoBehaviour
     }
 
 
-    static List<string> Buffer = new List<string>();
-
     public static void Log(object message)
     {
         Buffer.Add(message.ToString());
@@ -43,7 +42,14 @@ public class DebugView : MonoBehaviour
         {
             Buffer.ForEach( a => Compo.text.text += a.ToString() + "\n");
             Buffer.Clear();
+        }    
+
+        if(Buffer.Count > 1000)
+        {
+            Buffer.Clear();
+            Debug.LogError("バッファのサイズが1000を上回ったのでバッファをクリアしました。");
         }
+
         Debug.Log(message);
     }
 }

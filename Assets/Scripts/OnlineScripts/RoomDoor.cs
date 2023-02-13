@@ -36,9 +36,13 @@ public class RoomDoor : MonoBehaviourPunCallbacks
     private Avatar avatar0 = null;
     private Avatar avatar1 = null;
     OnLineSelect onLineSelect = null;
+    [SerializeField] public bool IsOnline;
+
+    [SerializeField] private bool player0Ready = false;
+    [SerializeField] private bool player1Ready = false;
+    public event System.Action OnBothReady;
     [SerializeField] private bool gotMasterColor = false;  //マスターの色が決め終わったかのフラグ
     [SerializeField] private bool masterIsWhite = false;
-    [SerializeField] public bool IsOnline;
     //public OnLineSelect onLineSelect = new OnLineSelect();
     /// <summary>
     /// 【まくまくまくまくまく】
@@ -60,12 +64,17 @@ public class RoomDoor : MonoBehaviourPunCallbacks
 
     string key1 = "gotMasterColor";
     string key2 = "masterIsWhite";
+    string key3 = "MasterPlayerReady";
+    string key4 = "NormalPlayerReady";
     ExitGames.Client.Photon.Hashtable hashtable = new ExitGames.Client.Photon.Hashtable();
     //一通りの更新が終わったら周知しときたい変数をまとめて更新する
     public void SetRoomProps()
     {
+        Debug.Log("るーむぷろぱてぃーセット");
         hashtable[key1] = gotMasterColor;
         hashtable[key2] = masterIsWhite;
+        hashtable[key3] = player0Ready;
+        hashtable[key4] = player1Ready;
 
         PhotonNetwork.CurrentRoom.SetCustomProperties(hashtable);
         hashtable.Clear();
@@ -75,11 +84,15 @@ public class RoomDoor : MonoBehaviourPunCallbacks
     {
         gotMasterColor = (PhotonNetwork.CurrentRoom.CustomProperties[key1] is bool a) ? a : false;
         masterIsWhite = (PhotonNetwork.CurrentRoom.CustomProperties[key2] is bool b) ? b : false;
+        player0Ready = (PhotonNetwork.CurrentRoom.CustomProperties[key3] is bool c) ? c : false;
+        player1Ready = (PhotonNetwork.CurrentRoom.CustomProperties[key4] is bool d) ? d : false;
     }
     //更新されたら一応自動で取得しとく
     public override void OnRoomPropertiesUpdate(ExitGames.Client.Photon.Hashtable propertiesThatChanged)
     {
         GetRoomProps();
+        Debug.Log($"るーむぷろぱてぃーやった  {player0Ready} {player1Ready}");
+        if(player0Ready && player1Ready) OnBothReady?.Invoke();
     }
 
     #endregion 【カスタムプロパティ系】 ================================================================
@@ -191,6 +204,7 @@ public class RoomDoor : MonoBehaviourPunCallbacks
                 Camera.main.transform.position = new Vector3(-0.4f, 28.86f, -19.95f);
                 Camera.main.transform.rotation = Quaternion.Euler(55, 0, 0);
             
+                player0Ready = true;
                 avatar0.LockAction();
             }
             else
@@ -200,9 +214,12 @@ public class RoomDoor : MonoBehaviourPunCallbacks
                 Camera.main.transform.position = new Vector3(0.4f, 28.86f, 19.95f);
                 Camera.main.transform.rotation = Quaternion.Euler(55, 180, 0);
                 
+                player1Ready = true;
                 avatar1.LockAction();
             }
 
+            yield return new WaitUntil(() => SceneHandler_Game.Compo.IsInitialized);
+            Debug.Log("OnInitialized");
             SetRoomProps();
         }
         else
@@ -217,6 +234,8 @@ public class RoomDoor : MonoBehaviourPunCallbacks
                 avatar1 = LoadNetWorkObject("Avatar1", new Vector3(0f, 2f, 15f), Quaternion.identity).GetComponent<Avatar>();
                 Camera.main.transform.position = new Vector3(0.4f, 28.86f, 19.95f);
                 Camera.main.transform.rotation = Quaternion.Euler(55, 180, 0);
+
+                player1Ready = true;
             }   
             else
             {
@@ -224,8 +243,12 @@ public class RoomDoor : MonoBehaviourPunCallbacks
                 avatar0 = LoadNetWorkObject("Avatar0", new Vector3(0f, 2f, -15f), Quaternion.identity).GetComponent<Avatar>();
                 Camera.main.transform.position = new Vector3(-0.4f, 28.86f, -19.95f);
                 Camera.main.transform.rotation = Quaternion.Euler(55, 0, 0);
+
+                player0Ready = true;
             }
 
+            yield return new WaitUntil( () => SceneHandler_Game.Compo.IsInitialized);
+            Debug.Log("OnInitialized");
             SetRoomProps();
         }
     }
@@ -241,8 +264,12 @@ public class RoomDoor : MonoBehaviourPunCallbacks
         Debug.Log(newPlayer + " が参加しました");
         GivePlayers();
 
-        if (masterIsWhite) avatar0.AllowAction();
-        else avatar1.AllowAction();
+        OnBothReady += () =>
+        {
+            Debug.Log("二人ともじゅんびおっけー");
+            if (masterIsWhite) avatar0.AllowAction();
+            else avatar1.AllowAction();
+        };
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
