@@ -69,7 +69,9 @@ public class AudioUnit : Savable
 
     public void PlayOneShot()
     {
+        Debug.Log($"{source} {source.volume}  おとなった！！！！１");
         source.PlayOneShot(source.clip);
+        Debug.Log($"{source} {source.volume}  おとなった！！！！２");
     }
 }
 
