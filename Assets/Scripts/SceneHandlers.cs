@@ -155,11 +155,11 @@ public class SceneHandler_Menu : SingletonCompo<SceneHandler_Menu>, ISceneHandle
         {
             warningMessage.SetActive(true);
         }
-        else
-        if (RoomDoor.ins.IsOnline == false)
-        {
-            GameManager.Compo.LoadScene(SceneName.Game);
-        }
+        //else
+        //if (RoomDoor.ins.IsOnline == false)
+        //{
+        //    GameManager.Compo.LoadScene(SceneName.Game);
+        //}
     }
 
 
@@ -260,8 +260,9 @@ public class SceneHandler_Game : SingletonCompo<SceneHandler_Game>, ISceneHandle
         GameManager.Compo.roopGameCounter.Count();
 
         if (RoomDoor.ins.IsOnline) RoomDoor.ins.Join();
-        yield return new WaitForSeconds(2.5f); //コルーチンを一時中断して2.5秒後に次の行からの処理再開
-       
+
+        yield return new WaitUntil(() =>  GameObject.Find("ChessSet(Clone)") != null);
+        
         pieceManager = GameObject.Find("ChessSet(Clone)").GetComponent<PieceManager>();
         WhiteKing = pieceManager.whiteKing0;
         BlackKing = pieceManager.blackKing0;

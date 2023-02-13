@@ -44,6 +44,7 @@ public class Avatar : MonoBehaviourPunCallbacks
         Debug.Log("photonView.Owner.NickName " + photonView.Owner.NickName);
         Debug.Log("photonView.OwnerActorNr " + photonView.OwnerActorNr);
 
+        Debug.Log($"なまえーーーーーーーーーーーーーー０");
         var players = PhotonNetwork.PlayerList;
         Player masterPlayer = null;
         Player nomalPlayer = null;
@@ -58,13 +59,15 @@ public class Avatar : MonoBehaviourPunCallbacks
                 nomalPlayer = a;
             }
         }
-
+        Debug.Log($"なまえーーーーーーーーーーーーーー１");
         if (masterPlayer.NickName == nomalPlayer.NickName)
         {
+            Debug.Log($"なまえーーーーーーーーーーーーーー２");
             nameLabel.text = $"{photonView.Owner.NickName}({photonView.OwnerActorNr})";
         }
         else
         {
+            Debug.Log($"なまえーーーーーーーーーーーーーー３");
             nameLabel.text = $"{photonView.Owner.NickName}";
         }
     }

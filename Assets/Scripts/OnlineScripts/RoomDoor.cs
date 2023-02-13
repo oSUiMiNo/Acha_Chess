@@ -177,7 +177,6 @@ public class RoomDoor : MonoBehaviourPunCallbacks
     {
         Debug.Log("ルームに参加しました");
         GivePlayers();
-
         StartCoroutine(InitNetworkObject());
     }
     IEnumerator InitNetworkObject()
@@ -185,9 +184,10 @@ public class RoomDoor : MonoBehaviourPunCallbacks
         int randomNumber = UnityEngine.Random.Range(0, 2);
 
         GetRoomProps();
-
+        Debug.Log("ネットワークオブジェクトやる0");
         if (PhotonNetwork.IsMasterClient)
         {
+            Debug.Log("ネットワークオブジェクトやる1");
             //chessset = PhotonNetwork.InstantiateRoomObject("ChessSet", Vector3.zero, Quaternion.identity).GetComponent<ChessSet>();
             chessset = LoadRoomObject("ChessSet", Vector3.zero, Quaternion.identity).GetComponent<ChessSet>();
             
@@ -267,8 +267,16 @@ public class RoomDoor : MonoBehaviourPunCallbacks
         OnBothReady += () =>
         {
             Debug.Log("二人ともじゅんびおっけー");
-            if (masterIsWhite) avatar0.AllowAction();
-            else avatar1.AllowAction();
+            if (masterIsWhite)
+            {
+                avatar0.AllowAction();
+                avatar0.SetAvaterNameDisplay();
+            }
+            else
+            {
+                avatar1.AllowAction();
+                avatar1.SetAvaterNameDisplay();
+            }
         };
     }
 
