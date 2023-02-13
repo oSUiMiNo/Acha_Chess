@@ -31,6 +31,11 @@ public class Avatar : MonoBehaviourPunCallbacks
     }
 
 
+    private void Start()
+    {
+        SetAvaterNameDisplay();
+    }
+
     // プレイヤー名とプレイヤーIDを表示する
     public void SetAvaterNameDisplay()
     {
@@ -44,7 +49,7 @@ public class Avatar : MonoBehaviourPunCallbacks
         Debug.Log("photonView.Owner.NickName " + photonView.Owner.NickName);
         Debug.Log("photonView.OwnerActorNr " + photonView.OwnerActorNr);
 
-        Debug.Log($"なまえーーーーーーーーーーーーーー０");
+        DebugView.Log($"なまえーーーーーーーーーーーーーー０");
         var players = PhotonNetwork.PlayerList;
         Player masterPlayer = null;
         Player nomalPlayer = null;
@@ -59,15 +64,15 @@ public class Avatar : MonoBehaviourPunCallbacks
                 nomalPlayer = a;
             }
         }
-        Debug.Log($"なまえーーーーーーーーーーーーーー１");
+        DebugView.Log($"{gameObject} なまえーーーーーーーーーーーーーー１");
         if (masterPlayer.NickName == nomalPlayer.NickName)
         {
-            Debug.Log($"なまえーーーーーーーーーーーーーー２");
+            DebugView.Log($"{gameObject} なまえーーーーーーーーーーーーーー２");
             nameLabel.text = $"{photonView.Owner.NickName}({photonView.OwnerActorNr})";
         }
         else
         {
-            Debug.Log($"なまえーーーーーーーーーーーーーー３");
+            DebugView.Log($"{gameObject} なまえーーーーーーーーーーーーーー３");
             nameLabel.text = $"{photonView.Owner.NickName}";
         }
     }

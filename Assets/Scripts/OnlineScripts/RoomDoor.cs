@@ -267,16 +267,10 @@ public class RoomDoor : MonoBehaviourPunCallbacks
         OnBothReady += () =>
         {
             Debug.Log("二人ともじゅんびおっけー");
-            if (masterIsWhite)
-            {
-                avatar0.AllowAction();
-                avatar0.SetAvaterNameDisplay();
-            }
-            else
-            {
-                avatar1.AllowAction();
-                avatar1.SetAvaterNameDisplay();
-            }
+            if (masterIsWhite) avatar0.AllowAction();
+            else avatar1.AllowAction();
+            //avatar0.SetAvaterNameDisplay();
+            //avatar1.SetAvaterNameDisplay();
         };
     }
 
