@@ -244,6 +244,8 @@ public class SceneHandler_Game : SingletonCompo<SceneHandler_Game>, ISceneHandle
     public GameObject winImage;
     public bool whiteturn = true;
 
+    public bool useAnimation = false;
+
     public event System.Action OnInitScene;
     public event System.Action OnExitScene;
     public bool IsInitialized = false;

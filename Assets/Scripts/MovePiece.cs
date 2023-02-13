@@ -104,13 +104,8 @@ public class MovePiece : MonoBehaviourPunCallbacks
     {
         float moveTime = (movePoint - selectedPiece.transform.position).magnitude / pieceMoveSpeed;
         MoveAnim( movePoint, moveTime);
-
         yield return new WaitForSeconds(moveTime - 0.2f);
-
         AudioManager.Units[AudioName.SE1].PlayOneShot();
-
-        //AudioSource se = AudioManager.Sources[AudioName.SE0];
-        //se.PlayOneShot(se.clip);
     }
 
 
@@ -125,13 +120,9 @@ public class MovePiece : MonoBehaviourPunCallbacks
     {
         float moveTime = (movePoint - selectedPiece.transform.position).magnitude / pieceMoveSpeed;
         MoveAnim(movePoint, moveTime);
-        
         yield return new WaitForSeconds(moveTime - 0.2f);
-
         AudioManager.Units[AudioName.SE0].PlayOneShot();
 
-        //AudioSource se = AudioManager.Sources[AudioName.SE1 ];
-        //se.PlayOneShot(se.clip);
         GetPiece(gotPiece_Name);
     }
 
