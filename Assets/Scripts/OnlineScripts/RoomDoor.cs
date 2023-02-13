@@ -175,7 +175,7 @@ public class RoomDoor : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.IsMasterClient)
         {
-            chessset = PhotonNetwork.InstantiateRoomObject("ChessSet", Vector3.zero, Quaternion.identity).GetComponent<ChessSet>();
+            //chessset = PhotonNetwork.InstantiateRoomObject("ChessSet", Vector3.zero, Quaternion.identity).GetComponent<ChessSet>();
             chessset = LoadRoomObject("ChessSet", Vector3.zero, Quaternion.identity).GetComponent<ChessSet>();
             
             yield return new WaitUntil(() => chessset != null);

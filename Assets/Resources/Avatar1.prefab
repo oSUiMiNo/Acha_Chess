@@ -349,7 +349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69ba7f4d997d1ef45b8c47e56d29d813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerType: 0
+  playerType: 1
   selectedPiece: {fileID: 0}
   white: []
   black: []

@@ -65,9 +65,10 @@ public class PieceSelector : MonoBehaviourPunCallbacks
         //オンラインモードかつthisが相手のアバターにくっついているPieceSelectorの場合はエントリーポイントに入らない**********
         if (RoomDoor.ins.IsOnline && !photonView.IsMine) return;
         //***********************************************************************************************
-        
+        //Debug.Log($"こまえらべるよーーーーー1");
         if ((playerType == PlayerType.WhitePlayer && SceneHandler_Game.Compo.whiteturn) || (playerType == PlayerType.BlackPlayer && !SceneHandler_Game.Compo.whiteturn))
         {
+            //Debug.Log($"こまえらべるよーーーーー2  {gameObject} {playerType} {SceneHandler_Game.Compo.whiteturn}");   
             SelectPiece();
         }
     }
@@ -79,7 +80,7 @@ public class PieceSelector : MonoBehaviourPunCallbacks
         RaycastHit hit;
         if (!Physics.Raycast(ray, out hit)) return;
         if (!Input.GetMouseButtonDown(0)) return;
-        //Debug.Log("Click (PieceSelector)");
+        Debug.Log($"Click   {gameObject}");
         if (playerType == PlayerType.WhitePlayer && hit.collider.gameObject.CompareTag("BlackPiece")) return;
         if (playerType == PlayerType.BlackPlayer && hit.collider.gameObject.CompareTag("WhitePiece")) return;
 

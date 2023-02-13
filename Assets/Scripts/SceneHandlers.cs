@@ -87,30 +87,30 @@ public class SceneHandler_Menu : SingletonCompo<SceneHandler_Menu>, ISceneHandle
 
         menuLoaded = true;
         
-        DebugView.Log("L0");
-        if (AdManager.IsCreated)
-        {
-            DebugView.Log("L1");
+        //DebugView.Log("L0");
+        //if (AdManager.IsCreated)
+        //{
+        //    DebugView.Log("L1");
 
-            AdManager.LoadAd(AdType.BannerDefault);
-            DebugView.Log("L2-1");
-            AdManager.ShowAd(AdType.BannerDefault);
-            DebugView.Log("L2-2");
+        //    AdManager.LoadAd(AdType.BannerDefault);
+        //    DebugView.Log("L2-1");
+        //    AdManager.ShowAd(AdType.BannerDefault);
+        //    DebugView.Log("L2-2");
 
-            if (GameManager.Compo.roopGameCounter.HitExeptFirst())
-            {
-                DebugView.Log("L3");
+        //    if (GameManager.Compo.roopGameCounter.HitExeptFirst())
+        //    {
+        //        DebugView.Log("L3");
 
-                if (Roulet.BoolRoulet(1))
-                {
-                    DebugView.Log("L4");
+        //        if (Roulet.BoolRoulet(1))
+        //        {
+        //            DebugView.Log("L4");
 
-                    AdManager.LoadAd(AdType.InterstitialOnRoad);
-                    AdManager.ShowAd(AdType.InterstitialOnRoad);
-                    DebugView.Log("----------ƒCƒ“ƒ^[ƒXƒeƒBƒVƒƒƒ‹L•\¦----------");
-                }
-            }
-        }
+        //            AdManager.LoadAd(AdType.InterstitialOnRoad);
+        //            AdManager.ShowAd(AdType.InterstitialOnRoad);
+        //            DebugView.Log("----------ƒCƒ“ƒ^[ƒXƒeƒBƒVƒƒƒ‹L•\¦----------");
+        //        }
+        //    }
+        //}
         DebugView.Log("--------------------ƒXƒ^[ƒg‰æ–Ê‰Šú‰»Š®—¹--------------------");
     }
 
@@ -259,10 +259,8 @@ public class SceneHandler_Game : SingletonCompo<SceneHandler_Game>, ISceneHandle
         if (RoomDoor.ins.IsOnline)
         { RoomDoor.ins.Join(); }
         yield return new WaitForSeconds(2.5f); //ƒRƒ‹[ƒ`ƒ“‚ğˆê’†’f‚µ‚Ä2.5•bŒã‚ÉŸ‚Ìs‚©‚ç‚Ìˆ—ÄŠJ
-        Debug.Log(GameObject.Find("ChessSet"));
-
-        pieceManager = GameObject.Find("ChessSet").GetComponent<PieceManager>();
-        Debug.Log("!!!" + pieceManager);
+       
+        pieceManager = GameObject.Find("ChessSet(Clone)").GetComponent<PieceManager>();
         WhiteKing = pieceManager.whiteKing0;
         BlackKing = pieceManager.blackKing0;
         winImage = GameObject.Find("WinImage");
@@ -289,7 +287,6 @@ public class SceneHandler_Game : SingletonCompo<SceneHandler_Game>, ISceneHandle
     {
         if (BlackKing.activeSelf == false)
         {
-            Debug.Log("menu‚É‚à‚Ç‚é?");
             winImage.SetActive(true);
             winImage.GetComponent<Image>().enabled = true;
             winImage.transform.GetChild(0).GetComponent<Text>().enabled = true;
@@ -299,7 +296,6 @@ public class SceneHandler_Game : SingletonCompo<SceneHandler_Game>, ISceneHandle
         }
         if (WhiteKing.activeSelf == false)
         {
-            Debug.Log("menu‚É‚à‚Ç‚é?");
             winImage.SetActive(true);
             winImage.GetComponent<Image>().enabled = true;
             winImage.transform.GetChild(0).GetComponent<Text>().enabled = true;

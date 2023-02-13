@@ -42,7 +42,6 @@ public class GameManager : MonoBehaviour
         UserData.Ins.Load();
     }
 
-
     public void Start()
     {
         RegisterScenes();

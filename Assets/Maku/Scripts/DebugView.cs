@@ -26,11 +26,13 @@ public class DebugView : MonoBehaviour
     }
 
     #endregion yƒVƒ“ƒOƒ‹ƒgƒ“‰»z ================================================================
-    void Awake()
+    void Start()
     {
         Singletonize();
         text = transform.Find("Scroll View/Viewport/Content").GetComponent<TextMeshProUGUI>();
+        Log("DebugView  €”õŠ®—¹");
     }
+
 
     static List<string> Buffer = new List<string>();
 

@@ -8250,7 +8250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  color: 0
+  color: 1
   marker: {fileID: 0}
   cam: {fileID: 0}
   selectedPiece: {fileID: 0}
@@ -9193,7 +9193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  color: 0
+  color: 1
   marker: {fileID: 0}
   cam: {fileID: 0}
   selectedPiece: {fileID: 0}
@@ -9282,7 +9282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  color: 0
+  color: 1
   marker: {fileID: 0}
   cam: {fileID: 0}
   selectedPiece: {fileID: 0}
@@ -10150,7 +10150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  color: 0
+  color: 1
   marker: {fileID: 0}
   cam: {fileID: 0}
   selectedPiece: {fileID: 0}
@@ -10977,7 +10977,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  color: 0
+  color: 1
   marker: {fileID: 0}
   cam: {fileID: 0}
   selectedPiece: {fileID: 0}
@@ -12975,7 +12975,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  color: 0
+  color: 1
   marker: {fileID: 0}
   cam: {fileID: 0}
   selectedPiece: {fileID: 0}
@@ -13676,7 +13676,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  color: 0
+  color: 1
   marker: {fileID: 0}
   cam: {fileID: 0}
   selectedPiece: {fileID: 0}
@@ -14208,7 +14208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  color: 0
+  color: 1
   marker: {fileID: 0}
   cam: {fileID: 0}
   selectedPiece: {fileID: 0}
@@ -14703,7 +14703,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  color: 0
+  color: 1
   marker: {fileID: 0}
   cam: {fileID: 0}
   selectedPiece: {fileID: 0}
@@ -16041,7 +16041,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  color: 0
+  color: 1
   marker: {fileID: 0}
   cam: {fileID: 0}
   selectedPiece: {fileID: 0}
@@ -20402,7 +20402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  color: 0
+  color: 1
   marker: {fileID: 0}
   cam: {fileID: 0}
   selectedPiece: {fileID: 0}
@@ -20634,7 +20634,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  color: 0
+  color: 1
   marker: {fileID: 0}
   cam: {fileID: 0}
   selectedPiece: {fileID: 0}
@@ -21830,7 +21830,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  color: 0
+  color: 1
   marker: {fileID: 0}
   cam: {fileID: 0}
   selectedPiece: {fileID: 0}
@@ -22532,7 +22532,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  color: 0
+  color: 1
   marker: {fileID: 0}
   cam: {fileID: 0}
   selectedPiece: {fileID: 0}
@@ -25187,7 +25187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  color: 0
+  color: 1
   marker: {fileID: 0}
   cam: {fileID: 0}
   selectedPiece: {fileID: 0}
@@ -26123,7 +26123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  color: 0
+  color: 1
   marker: {fileID: 0}
   cam: {fileID: 0}
   selectedPiece: {fileID: 0}
