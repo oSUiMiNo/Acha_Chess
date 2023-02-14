@@ -358,7 +358,7 @@ MonoBehaviour:
   selectedPiece_HighLightModel: {fileID: 0}
   beforePiece: {fileID: 0}
   initialPlace2: {x: 0, y: 0}
-  tile: {fileID: 0}
+  tile_Original: {fileID: 0}
   tileList: []
 --- !u!114 &5900980255712290302
 MonoBehaviour:
