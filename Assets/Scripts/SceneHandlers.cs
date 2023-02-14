@@ -87,31 +87,22 @@ public class SceneHandler_Menu : SingletonCompo<SceneHandler_Menu>, ISceneHandle
         offlineButton.SetActive(true);
 
         menuLoaded = true;
-        
-        //DebugView.Log("広告0");
-        //if (AdManager.IsCreated)
-        //{
-        //    DebugView.Log("広告1");
 
-        //    AdManager.LoadAd(AdType.BannerDefault);
-        //    DebugView.Log("広告2-1");
-        //    AdManager.ShowAd(AdType.BannerDefault);
-        //    DebugView.Log("広告2-2");
+        if (AdManager.IsCreated)
+        {
+            AdManager.LoadAd(AdType.BannerDefault);
+            AdManager.ShowAd(AdType.BannerDefault);
 
-        //    if (GameManager.Compo.roopGameCounter.HitExeptFirst())
-        //    {
-        //        DebugView.Log("広告3");
-
-        //        if (Roulet.BoolRoulet(1))
-        //        {
-        //            DebugView.Log("広告4");
-
-        //            AdManager.LoadAd(AdType.InterstitialOnRoad);
-        //            AdManager.ShowAd(AdType.InterstitialOnRoad);
-        //            DebugView.Log("----------インタースティシャル広告表示----------");
-        //        }
-        //    }
-        //}
+            if (GameManager.Compo.roopGameCounter.HitExeptFirst())
+            {
+                if (Roulet.BoolRoulet(2))
+                {
+                    AdManager.LoadAd(AdType.InterstitialOnRoad);
+                    AdManager.ShowAd(AdType.InterstitialOnRoad);
+                    DebugView.Log("----------インタースティシャル広告表示----------");
+                }
+            }
+        }
         DebugView.Log("--------------------スタート画面初期化完了--------------------");
         IsInitialized = true;
     }

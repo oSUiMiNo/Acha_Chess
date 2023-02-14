@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] public List<Player> players = new List<Player>();
     
-    public TimesCounter roopGameCounter = new TimesCounter(1);
+    public TimesCounter roopGameCounter = new TimesCounter(2);
 
 
     #region 【個別シングルトン化】 ===================================================================
