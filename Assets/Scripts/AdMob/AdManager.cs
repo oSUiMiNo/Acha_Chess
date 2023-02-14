@@ -32,7 +32,7 @@ public class AdManager : SingletonCompo<AdManager>
 
     public static AdRequest request = new AdRequest.Builder().Build(); //空の広告リクエストを作る
 
-    protected override void LateSubAwake()
+    protected override void SubLateAwake()
     {
         Debug.Log($"こんぽ！  {AdManager.Compo}");
         InitializeAd();

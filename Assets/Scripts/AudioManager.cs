@@ -18,60 +18,35 @@ public class AudioName
 }
 public class SliderName
 {
-    public static string BGM = "BgmVolume";
-    public static string SE0 = "SeVolume";
-    public static string SE1 = "SeVolume";
+    public static string BGM = "Slider_BgmVolume";
+    public static string SE0 = "Slider_SeVolume";
+    public static string SE1 = "Slider_SeVolume";
 }
 
-public class AudioUnit : Savable
+public class AudioUnit : MyExtention
 {
-    public override List<SaveSystem.IFriendWith_SaveSystem> Instances { get; protected set; } = instances;
-    public static List<SaveSystem.IFriendWith_SaveSystem> instances = new();
-    public AudioUnit() { }
-
-    #region データ
-    [SerializeField] public float volume;
-    #endregion
-
     [NonSerialized] public AudioSource source;  //モデル
     [NonSerialized] public SliderView sliderView;  //ビュー
 
     public AudioUnit(string sourceName, string sliderName)
     {
-        DebugView.Log($"ゆにっとー0");
-        Load();
-        DebugView.Log($"ゆにっとー1");
         source = LoadPrefab(sourceName).GetComponent<AudioSource>();
-        DebugView.Log($"ゆにっとー2");
         source.transform.parent = AudioManager.Compo.transform;
-        source.volume = volume;
+     
+        sliderView = GameObject.Find(sliderName).transform.Find("Slider").GetComponent<SliderView>();
+        DebugView.Log($"1   {sliderView}");
 
-        SceneHandler_Setting.Compo.OnInitScene += (() =>
-            {
-                sliderView = GameObject.Find(sliderName).transform.Find("Slider").GetComponent<SliderView>();
-                DebugView.Log($"1   {sliderView}");
-                sliderView.SetSValue(volume);
-
-                // Sliderの値の更新を監視
-                sliderView.SliderValueRP
-                .Subscribe(x =>
-                {
-                    source.volume = x;
-                    volume = x;
-                });
-            });
-
-        SceneHandler_Setting.Compo.OnExitScene += Save;
-
-        DebugView.Log($"そーーーーす   {source}");
-        DebugView.Log($"おんりょう  {source.volume}");
+        // Sliderの値の更新を監視
+        sliderView.SliderValueRP
+        .Subscribe(x =>
+        {
+            source.volume = x;
+        });
     }
 
     public void PlayOneShot()
     {
-        Debug.Log($"{source} {source.volume}  おとなった！！！！１");
         source.PlayOneShot(source.clip);
-        Debug.Log($"{source} {source.volume}  おとなった！！！！２");
     }
 }
 
@@ -81,12 +56,16 @@ public class AudioUnit : Savable
 public class AudioManager : SingletonCompo<AudioManager>
 {
     public static Dictionary<string, AudioUnit> Units = new Dictionary<string, AudioUnit>();
+    public event System.Action OnInitialized;
 
     protected override void Start()
     {
         DebugView.Log("ゆにっとつくるーーーーー");
         Units.Add(AudioName.BGM, new AudioUnit(AudioName.BGM, SliderName.BGM));
+        DebugView.Log("ゆにっとつくるーーーーー1");
         Units.Add(AudioName.SE0, new AudioUnit(AudioName.SE0, SliderName.SE0));
+        DebugView.Log("ゆにっとつくるーーーーー2");
         Units.Add(AudioName.SE1, new AudioUnit(AudioName.SE1, SliderName.SE1));
+        OnInitialized?.Invoke();
     }
 }

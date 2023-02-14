@@ -30,7 +30,7 @@ public class PieceSelector : MonoBehaviourPunCallbacks
         movePiece = GameObject.Find("ChessSet(Clone)").GetComponent<MovePiece>();
         chessSet = GameObject.Find("ChessSet(Clone)").GetComponent<ChessSet>();
 
-        tile = GameObject.Find("tiles");
+        tile_Original = GameObject.Find("tiles");
     }
 
 
@@ -132,18 +132,23 @@ public class PieceSelector : MonoBehaviourPunCallbacks
         GenerateTiles(common.castilngPlaceList, Color.blue);
     }
 
-    public GameObject tile;
+    public GameObject tile_Original;
     public List<GameObject> tileList;
     public void GenerateTiles(List<Vector2Int> placeList, Color tileColor) //選択したpieceが動ける場所(リストに入った場所)全部緑にする
     {
         for (int a = 0; a < placeList.Count; a++)
         {
             Vector3 movePlace_Point = Grid.GridToPoint(placeList[a]); //まだ駒がある場所を取り除いてないリストに入れたmoveplace2(Vector2)をVector3に
-            GameObject Greentile = Instantiate(tile, movePlace_Point, Quaternion.identity);
-            Renderer greentileRenderer = Greentile.GetComponent<Renderer>();
-            greentileRenderer.material.color = tileColor;
-            greentileRenderer.enabled = true;
-            tileList.Add(Greentile);
+            GameObject tile = Instantiate(tile_Original, movePlace_Point, Quaternion.identity);
+            Renderer tileRenderer = tile.GetComponent<Renderer>();
+            tileRenderer.material.color = tileColor;
+            
+            if(!SceneHandler_Game.Compo.useGuide) 
+                tileRenderer.enabled = false;
+            else
+                tileRenderer.enabled = true;
+            
+            tileList.Add(tile);
         }
     }
 

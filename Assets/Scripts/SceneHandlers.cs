@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
-
+using UniRx;
 
 public class SceneName
 {
@@ -250,6 +250,28 @@ public class SceneHandler_Game : SingletonCompo<SceneHandler_Game>, ISceneHandle
     public event System.Action OnInitScene;
     public event System.Action OnExitScene;
     public bool IsInitialized = false;
+        
+    protected override void Start()
+    {
+        ToggleView toggleView1 = GameObject.Find("Toggle_MovePlaceMark").GetComponent<ToggleView>();
+        Debug.Log($"とぐるーーーーーーーーーーーー１ {toggleView1} {toggleView1.ToggleValueRP}");
+
+        toggleView1.ToggleValueRP
+        .Subscribe(x =>
+        {
+            Debug.Log("とぐる");
+            useGuide = (bool)x;
+        });
+        Debug.Log($"とぐるーーーーーーーーーーーー２");
+        ToggleView toggleView2 = GameObject.Find("Toggle_PieceAnimation").GetComponent<ToggleView>();
+        // Sliderの値の更新を監視
+        toggleView2.ToggleValueRP
+        .Subscribe(x =>
+        {
+            useAnimation = (bool)x;
+        });
+        Debug.Log($"とぐるーーーーーーーーーーーー３");
+    }
 
     public void LoadScene()
     {

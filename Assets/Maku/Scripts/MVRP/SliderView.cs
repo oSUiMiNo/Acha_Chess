@@ -2,13 +2,27 @@ using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 
 namespace MVP.View
 {
-    public class SliderView : MonoBehaviour
+    public class SliderView : MonoBehaviourMyExtention
     {
+        class Data_Slider : Savable
+        {
+            public override List<SaveSystem.IFriendWith_SaveSystem> Instances { get; protected set; } = instances;
+            public static List<SaveSystem.IFriendWith_SaveSystem> instances = new();
+
+            //ノーマルのSavableで、引数ありのコンストラクタを使ってる場合は、デフォルトコンストラクタも作っといてね。
+
+            #region データ
+            [SerializeField] public float value = 0;
+            #endregion
+        }
+
+
         [SerializeField] private Slider slider;
-        [SerializeField] private TextMeshProUGUI text;
+        Data_Slider data = new Data_Slider();
 
         /// <summary>
         /// X軸操作のSlider
@@ -25,8 +39,13 @@ namespace MVP.View
             //Sliderの値の変更を監視
             slider.OnValueChangedAsObservable()
                 .DistinctUntilChanged()
-                .Subscribe(value => { OnValueChange(value, floatReactiveProperty, text); })
+                .Subscribe(value => { OnValueChange(value, floatReactiveProperty); })
                 .AddTo(this);
+
+            data.Load();
+            slider.value = data.value;
+
+            Canvas_Setting.Compo.OnHideWindow += data.Save;
         }
 
         /// <summary>
@@ -35,19 +54,18 @@ namespace MVP.View
         /// <param name="value">Sliderの値</param>
         /// <param name="floatReactiveProperty">値を更新をしたいRP</param>
         /// <param name="valueText">更新するテキスト</param>
-        private void OnValueChange(float value, FloatReactiveProperty floatReactiveProperty, TextMeshProUGUI valueText)
+        private void OnValueChange(float value, FloatReactiveProperty floatReactiveProperty)
         {
-            //値の整形
-            //var arrangeValue = Mathf.Floor((value - 0.5f) * 100) / 100 * 360;
-            //値の更新
-            //floatReactiveProperty.Value = arrangeValue;
-            //テキストに値を反映
-            //valueText.text = arrangeValue.ToString();
             floatReactiveProperty.Value = value;
+            data.value = value;
         }
 
         public void SetSValue(float volume)
         {
+            if(slider == null) 
+            {
+                Start();
+            }
             slider.value = volume;
         }
     }

@@ -39,7 +39,7 @@ public class SaveSystem : SingletonCompo<SaveSystem>
     //public static string SaveFolderPath => @"C:\Users\vantan\Documents\Unity\Maku\ChessN7\Assets\SaveFiles\";
     public static string SaveFolderPath => $"{Application.persistentDataPath}/";
 
-    protected override void LateSubAwake()
+    protected override void SubLateAwake()
     {
         DebugView.Log($"セーブファイルどこ    {SaveFolderPath}");
         GetSavableBaseTypes();

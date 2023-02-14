@@ -254,11 +254,11 @@ public abstract class SingletonCompo<SingletonType> : NonGenericSingletonCompoBa
         //DebugView.Log("シングルトンアウェイクーーーーーーーーーーー1");
         if (DestroyMistakenSingleton()) return;  //ここの return 大事。gameObject を Destroy しても、Awake() は最後まで実行されちゃうらしいので。
         GetInstance_N_SingletonizeGameObject<SingletonType>();
-        LateSubAwake();
+        SubLateAwake();
         DebugView.Log("シングルトンアウェイクーーーーーーーーーーー2");
         DebugView.Log($"ゲームマネージャーある？   {GameManager.Compo}");
     }
-    protected virtual void LateSubAwake() { }
+    protected virtual void SubLateAwake() { }
 
     public bool DestroyMistakenSingleton()
     {

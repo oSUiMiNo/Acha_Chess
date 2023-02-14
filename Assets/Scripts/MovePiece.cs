@@ -31,7 +31,6 @@ public class MovePiece : MonoBehaviourPunCallbacks
     {
         GetComponets();
         this.enabled = false;
-
     }
 
     void Update()
@@ -103,7 +102,8 @@ public class MovePiece : MonoBehaviourPunCallbacks
     IEnumerator Move_Co(Vector3 movePoint)
     {
         float moveTime = (movePoint - selectedPiece.transform.position).magnitude / pieceMoveSpeed;
-        if(SceneHandler_Game.Compo.useAnimation) MoveAnim(movePoint, moveTime);
+        MoveAnim(movePoint, moveTime);
+        
         yield return new WaitForSeconds(moveTime - 0.2f);
         AudioManager.Units[AudioName.SE1].PlayOneShot();
     }
@@ -119,7 +119,8 @@ public class MovePiece : MonoBehaviourPunCallbacks
     IEnumerator Attack_Co(Vector3 movePoint, string gotPiece_Name)
     {
         float moveTime = (movePoint - selectedPiece.transform.position).magnitude / pieceMoveSpeed;
-        if (SceneHandler_Game.Compo.useAnimation) MoveAnim(movePoint, moveTime);
+        MoveAnim(movePoint, moveTime);
+        
         yield return new WaitForSeconds(moveTime - 0.2f);
         AudioManager.Units[AudioName.SE0].PlayOneShot();
 
@@ -130,24 +131,30 @@ public class MovePiece : MonoBehaviourPunCallbacks
     void MoveAnim(Vector3 movePoint, float moveTime)
     {
         Debug.Log(selectedPiece + " を " + movePoint + " に動かす");
-
-        //selectedPiece.transform.position = movePoint;
-        if (selectedPiece.GetComponent<Piece_Common>().type == PieceType.Knight)
+        if (SceneHandler_Game.Compo.useAnimation)
         {
-            selectedPiece.transform.DOPath(
-                new[]
-                {
+            //selectedPiece.transform.position = movePoint;
+            if (selectedPiece.GetComponent<Piece_Common>().type == PieceType.Knight)
+            {
+                selectedPiece.transform.DOPath(
+                    new[]
+                    {
                     selectedPiece.transform.position,
                     (movePoint + selectedPiece.transform.position)/2 + new Vector3(0, 3, 0),
                     movePoint
-                },
-                moveTime,
-                PathType.CatmullRom
-                ).SetEase(Ease.InSine);
+                    },
+                    moveTime,
+                    PathType.CatmullRom
+                    ).SetEase(Ease.InSine);
+            }
+            else
+            {
+                selectedPiece.transform.DOMove(movePoint, moveTime).SetEase(Ease.InQuad);
+            }
         }
         else
         {
-            selectedPiece.transform.DOMove(movePoint, moveTime).SetEase(Ease.InQuad);
+            selectedPiece.transform.position = movePoint;
         }
     }
     

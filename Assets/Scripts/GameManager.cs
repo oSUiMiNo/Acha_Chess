@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public TimesCounter roopGameCounter = new TimesCounter(1);
 
 
-    #region 【シングルトン化】 ===================================================================
+    #region 【個別シングルトン化】 ===================================================================
 
     public static GameManager Compo = null;//staticをつけた変数は１つしか存在しなくなる。だから呼び出すときにクラスをよびだしてそのクラスの関数名.変数名としなくて変数名だけで
     void Singletonize()  //シングルトン。１つしかインスタンス作らない。まだインスタンスがなかったらインスタンス(このクラス）作る。
@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    #endregion 【シングルトン化】 ================================================================
+    #endregion 【個別シングルトン化】 ================================================================
 
     public void Awake()
     {
