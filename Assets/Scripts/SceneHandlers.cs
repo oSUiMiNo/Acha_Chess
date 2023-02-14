@@ -245,6 +245,7 @@ public class SceneHandler_Game : SingletonCompo<SceneHandler_Game>, ISceneHandle
     public bool whiteturn = true;
 
     public bool useAnimation = false;
+    public bool useGuide = false;
 
     public event System.Action OnInitScene;
     public event System.Action OnExitScene;

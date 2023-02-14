@@ -103,7 +103,7 @@ public class MovePiece : MonoBehaviourPunCallbacks
     IEnumerator Move_Co(Vector3 movePoint)
     {
         float moveTime = (movePoint - selectedPiece.transform.position).magnitude / pieceMoveSpeed;
-        MoveAnim( movePoint, moveTime);
+        if(SceneHandler_Game.Compo.useAnimation) MoveAnim(movePoint, moveTime);
         yield return new WaitForSeconds(moveTime - 0.2f);
         AudioManager.Units[AudioName.SE1].PlayOneShot();
     }
@@ -119,7 +119,7 @@ public class MovePiece : MonoBehaviourPunCallbacks
     IEnumerator Attack_Co(Vector3 movePoint, string gotPiece_Name)
     {
         float moveTime = (movePoint - selectedPiece.transform.position).magnitude / pieceMoveSpeed;
-        MoveAnim(movePoint, moveTime);
+        if (SceneHandler_Game.Compo.useAnimation) MoveAnim(movePoint, moveTime);
         yield return new WaitForSeconds(moveTime - 0.2f);
         AudioManager.Units[AudioName.SE0].PlayOneShot();
 
