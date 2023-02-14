@@ -257,6 +257,7 @@ public class RoomDoor : MonoBehaviourPunCallbacks
     public override void OnLeftRoom()
     {
         Debug.Log("ルームから退出しました");
+        if (SceneManager.GetActiveScene().name == SceneName.Game) SceneHandler_Menu.Compo.LoadScene();
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
