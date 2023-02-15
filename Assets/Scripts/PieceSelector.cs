@@ -75,20 +75,21 @@ public class PieceSelector : MonoBehaviourPunCallbacks
 
     private void SelectPiece()
     {
+        if (!Input.GetMouseButtonDown(0)) return;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 0.02f, false);
         RaycastHit hit;
         if (!Physics.Raycast(ray, out hit)) return;
-        if (!Input.GetMouseButtonDown(0)) return;
-        Debug.Log($"Click   {gameObject}");
+
+        if (common != null &&
+            !common.movePlaceList.Contains(Grid.PointToGrid(hit.point))) common.movePlaceList.Clear();
+
         if (playerType == PlayerType.WhitePlayer && hit.collider.gameObject.CompareTag("BlackPiece")) return;
         if (playerType == PlayerType.BlackPlayer && hit.collider.gameObject.CompareTag("WhitePiece")) return;
 
         if (beforePiece != null) ClearPiece(beforePiece);
-        //if (!((gameManager.whiteturn && hit.collider.gameObject.CompareTag("WhitePiece")) || (!gameManager.whiteturn && hit.collider.gameObject.CompareTag("BlackPiece")))) return;
-        //if (!((GameManager.ins.whiteturn && hit.collider.gameObject.CompareTag("WhitePiece")) || (!GameManager.ins.whiteturn && hit.collider.gameObject.CompareTag("BlackPiece")))) return;
-        if (!((SceneHandler_Game.Compo.whiteturn && hit.collider.gameObject.CompareTag("WhitePiece")) || (!SceneHandler_Game.Compo.whiteturn && hit.collider.gameObject.CompareTag("BlackPiece")))) return;
-        //Debug.Log("選ぶよ");    
+        if (!((SceneHandler_Game.Compo.whiteturn && hit.collider.gameObject.CompareTag("WhitePiece")) ||
+            (!SceneHandler_Game.Compo.whiteturn && hit.collider.gameObject.CompareTag("BlackPiece")))) return;
         selectedPiece = hit.collider.gameObject;
         selectedPiece_Model = selectedPiece.transform.GetChild(0).gameObject;
         selectedPiece_HighLightModel = selectedPiece.transform.GetChild(1).gameObject;
