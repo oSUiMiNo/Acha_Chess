@@ -11,19 +11,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Create_tyesu.unity
     guid: 3c69490e779b85b48b5f5aeb41e99846
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Rule.unity
     guid: 7cdad17a8cac31a418680378cb946de9
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SettingScene.unity
     guid: 94dac61d99c843346aea5a3e1217579e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Unimplemented.unity
     guid: abc90efe04a05c742888c4767bc57149
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Unimplemented1.unity
     guid: 2dcd33fb985eafe458107ef4061e25f3
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Unimplemented2.unity
     guid: de39f3dd86be3ea43b866888acc420ed
   m_configObjects: {}

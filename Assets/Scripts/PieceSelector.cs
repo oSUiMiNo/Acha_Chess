@@ -76,6 +76,7 @@ public class PieceSelector : MonoBehaviourPunCallbacks
     private void SelectPiece()
     {
         if (!Input.GetMouseButtonDown(0)) return;
+        
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 0.02f, false);
         RaycastHit hit;
@@ -84,12 +85,14 @@ public class PieceSelector : MonoBehaviourPunCallbacks
         if (common != null &&
             !common.movePlaceList.Contains(Grid.PointToGrid(hit.point))) common.movePlaceList.Clear();
 
-        if (playerType == PlayerType.WhitePlayer && hit.collider.gameObject.CompareTag("BlackPiece")) return;
-        if (playerType == PlayerType.BlackPlayer && hit.collider.gameObject.CompareTag("WhitePiece")) return;
+        if ((playerType == PlayerType.WhitePlayer && hit.collider.gameObject.CompareTag("BlackPiece")) ||
+            (playerType == PlayerType.BlackPlayer && hit.collider.gameObject.CompareTag("WhitePiece"))) return;
 
         if (beforePiece != null) ClearPiece(beforePiece);
+
         if (!((SceneHandler_Game.Compo.whiteturn && hit.collider.gameObject.CompareTag("WhitePiece")) ||
             (!SceneHandler_Game.Compo.whiteturn && hit.collider.gameObject.CompareTag("BlackPiece")))) return;
+        
         selectedPiece = hit.collider.gameObject;
         selectedPiece_Model = selectedPiece.transform.GetChild(0).gameObject;
         selectedPiece_HighLightModel = selectedPiece.transform.GetChild(1).gameObject;
