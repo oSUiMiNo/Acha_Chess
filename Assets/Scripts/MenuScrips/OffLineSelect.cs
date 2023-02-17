@@ -29,5 +29,5 @@ public class OffLineSelect : MonoBehaviour
     //    GameManager.ins.startButton.SetActive(true);
     //    GameManager.ins.smokes.SetActive(false);
     //    GameManager.ins.warningMessage.SetActive(false);
-    //}
-}
+    //    //}
+    }

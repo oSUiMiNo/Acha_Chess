@@ -6,10 +6,12 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 using UniRx;
+using System.Data;
 
 public class SceneName
 {
-    public static string Game = "Create_tyesu";
+    public static string Game_OnLine = "Chess_OnLine";
+    public static string Game_OffLine = "Chess_OffLine";
     public static string Menu = "Menu";
     public static string Setting = "SettingScene";
 }
@@ -138,7 +140,7 @@ public class SceneHandler_Menu : SingletonCompo<SceneHandler_Menu>, ISceneHandle
             nameText != "" &&
             RoomDoor.ins.isConectedToMasterServer)
         {
-            GameManager.Compo.LoadScene(SceneName.Game);
+            GameManager.Compo.LoadScene(SceneName.Game_OnLine);
         }
         else
         if (RoomDoor.ins.IsOnline == true &&
@@ -167,6 +169,7 @@ public class SceneHandler_Menu : SingletonCompo<SceneHandler_Menu>, ISceneHandle
         StartCoroutine(SwitchToOnline());
         StartCoroutine(ReadyToPlay_Online());
     }
+
     private IEnumerator SwitchToOnline()
     {
         if (!PhotonNetwork.IsConnectedAndReady)
@@ -193,9 +196,9 @@ public class SceneHandler_Menu : SingletonCompo<SceneHandler_Menu>, ISceneHandle
 
     public void OnClickOffLineButton()
     {
-        //StartCoroutine(SwitchToOffline());
-        //StartCoroutine(ReadyToPlay_Offline());
-        offlineYet.SetActive(true);
+        StartCoroutine(SwitchToOffline());
+        StartCoroutine(ReadyToPlay_Offline());
+        //offlineYet.SetActive(true);
     }
     private IEnumerator SwitchToOffline()
     {
@@ -266,7 +269,7 @@ public class SceneHandler_Game : SingletonCompo<SceneHandler_Game>, ISceneHandle
 
     public void LoadScene()
     {
-        SceneManager.LoadScene(SceneName.Game);
+        SceneManager.LoadScene(SceneName.Game_OnLine);
     }
 
     public IEnumerator InitScene()

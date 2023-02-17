@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: ffb5ff698eed4854586cdc4132cb6b9b
   - enabled: 1
-    path: Assets/Scenes/Create_tyesu.unity
+    path: Assets/Scenes/Chess_OnLine.unity
     guid: 3c69490e779b85b48b5f5aeb41e99846
   - enabled: 0
     path: Assets/Scenes/Rule.unity

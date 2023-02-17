@@ -107,11 +107,11 @@ public class RoomDoor : MonoBehaviourPunCallbacks
     public void ConnectToMasterServer()
     {
         /// <summary>
-        /// 【まくまくまくまくまく】
+        /// 【まく】
         ///この onLineSelect、newでインスタンス化されたやつだからこいつの変数参照しても意味ないよ。どうして意味が無いんでしょう！
         ///オンラインボタンを押すとif文に入ってるOnlinedがtrueになるけど、ここではnewした新しいインスタンスを使ってるから、Onlinedはfalseのままだから。 
         /// </summary>
-        if (IsOnline || onLineSelect.Onlined == true)
+        if (IsOnline)
         {
             tryingConectingToMasterServer = true;
             isConectedToMasterServer = false;
@@ -257,7 +257,7 @@ public class RoomDoor : MonoBehaviourPunCallbacks
     public override void OnLeftRoom()
     {
         Debug.Log("ルームから退出しました");
-        if (SceneManager.GetActiveScene().name == SceneName.Game) SceneHandler_Menu.Compo.LoadScene();
+        if (SceneManager.GetActiveScene().name == SceneName.Game_OnLine) SceneHandler_Menu.Compo.LoadScene();
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)

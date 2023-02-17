@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class OnLineSelect : MonoBehaviour
 {
-    public bool Onlined = false;
+    //public bool Onlined = false;
     //public void OnClickOnLineButton()
     //{
     //    RoomDoorWay.ins.IsOnline = true;
