@@ -66,7 +66,7 @@ public class PieceSelector : MonoBehaviourPunCallbacks
         if (RoomDoor.ins.IsOnline && !photonView.IsMine) return;
         //***********************************************************************************************
         //Debug.Log($"こまえらべるよーーーーー1");
-        if ((playerType == PlayerType.WhitePlayer && SceneHandler_Game.Compo.whiteturn) || (playerType == PlayerType.BlackPlayer && !SceneHandler_Game.Compo.whiteturn))
+        if ((playerType == PlayerType.WhitePlayer && SceneHandler_Game_OnLine.Compo.whiteturn) || (playerType == PlayerType.BlackPlayer && !SceneHandler_Game_OnLine.Compo.whiteturn))
         {
             //Debug.Log($"こまえらべるよーーーーー2  {gameObject} {playerType} {SceneHandler_Game.Compo.whiteturn}");   
             SelectPiece();
@@ -90,8 +90,8 @@ public class PieceSelector : MonoBehaviourPunCallbacks
 
         if (beforePiece != null) ClearPiece(beforePiece);
 
-        if (!((SceneHandler_Game.Compo.whiteturn && hit.collider.gameObject.CompareTag("WhitePiece")) ||
-            (!SceneHandler_Game.Compo.whiteturn && hit.collider.gameObject.CompareTag("BlackPiece")))) return;
+        if (!((SceneHandler_Game_OnLine.Compo.whiteturn && hit.collider.gameObject.CompareTag("WhitePiece")) ||
+            (!SceneHandler_Game_OnLine.Compo.whiteturn && hit.collider.gameObject.CompareTag("BlackPiece")))) return;
         
         selectedPiece = hit.collider.gameObject;
         selectedPiece_Model = selectedPiece.transform.GetChild(0).gameObject;
@@ -99,7 +99,7 @@ public class PieceSelector : MonoBehaviourPunCallbacks
         initialPlace2 = Grid.PointToGrid(selectedPiece.transform.position);
         common = selectedPiece.GetComponent<Piece_Common>();
 
-        if(SceneHandler_Game.Compo.whiteturn)
+        if(SceneHandler_Game_OnLine.Compo.whiteturn)
         {
             if (common.color == PieceColor.white)
             {
@@ -147,7 +147,7 @@ public class PieceSelector : MonoBehaviourPunCallbacks
             Renderer tileRenderer = tile.GetComponent<Renderer>();
             tileRenderer.material.color = tileColor;
             
-            if(!SceneHandler_Game.Compo.useGuide) 
+            if(!SceneHandler_Game_OnLine.Compo.useGuide) 
                 tileRenderer.enabled = false;
             else
                 tileRenderer.enabled = true;

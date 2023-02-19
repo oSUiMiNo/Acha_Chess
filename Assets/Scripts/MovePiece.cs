@@ -131,7 +131,7 @@ public class MovePiece : MonoBehaviourPunCallbacks
     void MoveAnim(Vector3 movePoint, float moveTime)
     {
         Debug.Log(selectedPiece + " を " + movePoint + " に動かす");
-        if (SceneHandler_Game.Compo.useAnimation)
+        if (SceneHandler_Game_OnLine.Compo.useAnimation)
         {
             //selectedPiece.transform.position = movePoint;
             if (selectedPiece.GetComponent<Piece_Common>().type == PieceType.Knight)
@@ -165,7 +165,7 @@ public class MovePiece : MonoBehaviourPunCallbacks
         Debug.Log("ゲット" + gotPiece_Name);
         //if (gotPiece.GetComponent<Piece_Common>().type == PieceType.King) GameManager.ins.CheckMate();
         //if (gotPiece.GetComponent<Piece_Common>().type == PieceType.King) StartCoroutine(GameManager.ins.CheckMate());
-        if (gotPiece.GetComponent<Piece_Common>().type == PieceType.King) StartCoroutine(SceneHandler_Game.Compo.CheckMate());
+        if (gotPiece.GetComponent<Piece_Common>().type == PieceType.King) StartCoroutine(SceneHandler_Game_OnLine.Compo.CheckMate());
     }
 
     public void ThisOff()
@@ -186,7 +186,7 @@ public class MovePiece : MonoBehaviourPunCallbacks
     [PunRPC]
     private void NextPlayer()
     {
-        SceneHandler_Game.Compo.NextPlayer();
+        SceneHandler_Game_OnLine.Compo.NextPlayer();
     }
 }
       

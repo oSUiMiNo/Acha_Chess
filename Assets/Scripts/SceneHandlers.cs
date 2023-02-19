@@ -113,7 +113,7 @@ public class SceneHandler_Menu : SingletonCompo<SceneHandler_Menu>, ISceneHandle
     public IEnumerator ExitScene() 
     {
         yield return null;
-        OnExitScene?.Invoke();
+        OnExitScene?.Invoke();  
     }
 
 
@@ -148,11 +148,11 @@ public class SceneHandler_Menu : SingletonCompo<SceneHandler_Menu>, ISceneHandle
         {
             warningMessage.SetActive(true);
         }
-        //else
-        //if (RoomDoor.ins.IsOnline == false)
-        //{
-        //    GameManager.Compo.LoadScene(SceneName.Game);
-        //}
+        else
+        if (RoomDoor.ins.IsOnline == false)
+        {
+            GameManager.Compo.LoadScene(SceneName.Game_OffLine);
+        }
     }
 
 
@@ -224,13 +224,9 @@ public class SceneHandler_Menu : SingletonCompo<SceneHandler_Menu>, ISceneHandle
 
 
 
+#region 1【オンラインゲームシーンのハンドラー】 ========================================================================
 
-
-
-
-#region 1【ゲームシーンのハンドラー】 ========================================================================
-
-public class SceneHandler_Game : SingletonCompo<SceneHandler_Game>, ISceneHandler
+public class SceneHandler_Game_OnLine : SingletonCompo<SceneHandler_Game_OnLine>, ISceneHandler
 {
     public PieceManager pieceManager = null;
     public GameObject WhiteKing;
@@ -337,9 +333,112 @@ public class SceneHandler_Game : SingletonCompo<SceneHandler_Game>, ISceneHandle
 #endregion 1【ゲームシーンのハンドラー】 =====================================================================
 
 
+#region 1【オフラインゲームシーンのハンドラー】 ========================================================================
+public class SceneHandler_Game_OffLine : SingletonCompo<SceneHandler_Game_OffLine>, ISceneHandler
+{
+    public PieceManager pieceManager = null;
+    public GameObject WhiteKing;
+    public GameObject BlackKing;
+    public GameObject winImage;
+    public bool whiteturn = true;
 
+    public bool useAnimation = false;
+    public bool useGuide = false;
 
-    
+    public event System.Action OnInitScene;
+    public event System.Action OnExitScene;
+    public bool IsInitialized = false;
+
+    protected override void Start()
+    {
+        ToggleView toggleView1 = GameObject.Find("Toggle_MovePlaceMark").GetComponent<ToggleView>();
+        Debug.Log($"とぐるーーーーーーーーーーーー１ {toggleView1} {toggleView1.ToggleValueRP}");
+
+        toggleView1.ToggleValueRP
+        .Subscribe(x =>
+        {
+            Debug.Log("とぐる");
+            useGuide = (bool)x;
+        });
+        Debug.Log($"とぐるーーーーーーーーーーーー２");
+        ToggleView toggleView2 = GameObject.Find("Toggle_PieceAnimation").GetComponent<ToggleView>();
+        // Sliderの値の更新を監視
+        toggleView2.ToggleValueRP
+        .Subscribe(x =>
+        {
+            useAnimation = (bool)x;
+        });
+        Debug.Log($"とぐるーーーーーーーーーーーー３");
+    }
+
+    public void LoadScene()
+    {
+        SceneManager.LoadScene(SceneName.Game_OffLine);
+    }
+
+    public IEnumerator InitScene()
+    {
+        OnInitScene?.Invoke();
+        AdManager.HideAd(AdType.BannerDefault);
+        GameManager.Compo.roopGameCounter.Count();
+
+        //if (RoomDoor.ins.IsOnline) RoomDoor.ins.Join();　　///////////////////ここオンラインのときに繋ぐ処理だからいらん
+
+        yield return new WaitUntil(() => GameObject.Find("ChessSet(Clone)") != null);
+
+        pieceManager = GameObject.Find("ChessSet(Clone)").GetComponent<PieceManager>();
+        WhiteKing = pieceManager.whiteKing0;
+        BlackKing = pieceManager.blackKing0;
+        winImage = GameObject.Find("WinImage");
+        winImage.GetComponent<Image>().enabled = false;
+        winImage.transform.GetChild(0).GetComponent<Text>().enabled = false;
+        whiteturn = true;
+
+        Debug.Log("--------------------ゲーム初期化完了--------------------");  //Photonの処理も入るのですぐには完了しない。
+        IsInitialized = true;
+    }
+
+    public IEnumerator ExitScene() 
+    {
+        yield return new WaitForSeconds(0.1f);
+        OnExitScene?.Invoke();　　　//ここはデリゲートとか勉強しないとわからんからほっといていい。今は大きい影響は及ぼしてない。
+                                 　//「?」はnull許容型といい、?の前の変数がnullじゃなかったら関数が実行される
+        //if (RoomDoor.ins.IsOnline) ////////////////////ここオンラインのときの処理だからいらん
+        //{
+        //    RoomDoor.ins.Leave();
+        //}
+    }
+
+    public IEnumerator CheckMate()
+    {
+        if (BlackKing.activeSelf == false)
+        {
+            winImage.SetActive(true);
+            winImage.GetComponent<Image>().enabled = true;
+            winImage.transform.GetChild(0).GetComponent<Text>().enabled = true;
+            winImage.transform.GetChild(0).GetComponent<Text>().text = "White Win!";
+            yield return new WaitForSeconds(3);
+            GameManager.Compo.LoadScene(SceneName.Menu);
+        }
+        if (WhiteKing.activeSelf == false)
+        {
+            winImage.SetActive(true);
+            winImage.GetComponent<Image>().enabled = true;
+            winImage.transform.GetChild(0).GetComponent<Text>().enabled = true;
+            winImage.transform.GetChild(0).GetComponent<Text>().text = "Black Win!";
+            yield return new WaitForSeconds(3);
+            GameManager.Compo.LoadScene(SceneName.Menu);
+        }
+    }
+
+    public void NextPlayer()
+    {
+        whiteturn = !whiteturn;
+    }
+}
+
+#endregion 1【ゲームシーンのハンドラー】 =====================================================================
+
 
 
 #region 1【設定シーンのハンドラー】 ========================================================================

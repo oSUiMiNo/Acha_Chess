@@ -218,7 +218,7 @@ public class RoomDoor : MonoBehaviourPunCallbacks
                 avatar1.LockAction();
             }
 
-            yield return new WaitUntil(() => SceneHandler_Game.Compo.IsInitialized);
+            yield return new WaitUntil(() => SceneHandler_Game_OnLine.Compo.IsInitialized);
             Debug.Log("OnInitialized");
             SetRoomProps();
         }
@@ -247,7 +247,7 @@ public class RoomDoor : MonoBehaviourPunCallbacks
                 player0Ready = true;
             }
 
-            yield return new WaitUntil( () => SceneHandler_Game.Compo.IsInitialized);
+            yield return new WaitUntil( () => SceneHandler_Game_OnLine.Compo.IsInitialized);
             Debug.Log("OnInitialized");
             SetRoomProps();
         }

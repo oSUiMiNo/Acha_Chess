@@ -54,8 +54,8 @@ public class GameManager : MonoBehaviour
     void RegisterScenes()
     {
         sceneHandlers.Add(SceneName.Menu, SceneHandler_Menu.Compo);
-        sceneHandlers.Add(SceneName.Game_OnLine, SceneHandler_Game.Compo);
-        sceneHandlers.Add(SceneName.Game_OffLine, SceneHandler_Game.Compo);/////////////ここから:::::::::::::::::::::::
+        sceneHandlers.Add(SceneName.Game_OnLine, SceneHandler_Game_OnLine.Compo);
+        sceneHandlers.Add(SceneName.Game_OffLine, SceneHandler_Game_OnLine.Compo);/////////////ここから:::::::::::::::::::::::
         sceneHandlers.Add(SceneName.Setting, SceneHandler_Setting.Compo);
         SceneManager.sceneLoaded += OnSceneLoaded; //sceneloadedはシーンがロードされると呼ばれる
         SceneManager.sceneUnloaded += OnSceneUnloaded;
