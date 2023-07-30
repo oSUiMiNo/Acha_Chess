@@ -83,7 +83,7 @@
           {
             "name": "AudioBehaviour",
             "scenes": [
-              "Assets/Scenes/Create_tyesu.unity",
+              "Assets/Scenes/Chess_OnLine.unity",
               "Assets/Scenes/Menu.unity"
             ],
             "dependencyType": 0,
@@ -100,7 +100,7 @@
           {
             "name": "AudioListener",
             "scenes": [
-              "Assets/Scenes/Create_tyesu.unity",
+              "Assets/Scenes/Chess_OnLine.unity",
               "Assets/Scenes/Menu.unity"
             ],
             "dependencyType": 0,
@@ -154,7 +154,7 @@
           {
             "name": "Camera",
             "scenes": [
-              "Assets/Scenes/Create_tyesu.unity",
+              "Assets/Scenes/Chess_OnLine.unity",
               "Assets/Scenes/Menu.unity"
             ],
             "dependencyType": 0,
@@ -175,7 +175,7 @@
           {
             "name": "Cubemap",
             "scenes": [
-              "Assets/Scenes/Create_tyesu.unity",
+              "Assets/Scenes/Chess_OnLine.unity",
               "Assets/Scenes/Menu.unity"
             ],
             "dependencyType": 0,
@@ -196,7 +196,7 @@
           {
             "name": "EditorExtension",
             "scenes": [
-              "Assets/Scenes/Create_tyesu.unity",
+              "Assets/Scenes/Chess_OnLine.unity",
               "Assets/Scenes/Menu.unity"
             ],
             "dependencyType": 1,
@@ -211,7 +211,7 @@
           {
             "name": "GameObject",
             "scenes": [
-              "Assets/Scenes/Create_tyesu.unity",
+              "Assets/Scenes/Chess_OnLine.unity",
               "Assets/Scenes/Menu.unity"
             ],
             "dependencyType": 0,
@@ -238,7 +238,7 @@
           {
             "name": "LevelGameManager",
             "scenes": [
-              "Assets/Scenes/Create_tyesu.unity",
+              "Assets/Scenes/Chess_OnLine.unity",
               "Assets/Scenes/Menu.unity"
             ],
             "dependencyType": 1,
@@ -247,7 +247,7 @@
           {
             "name": "Light",
             "scenes": [
-              "Assets/Scenes/Create_tyesu.unity",
+              "Assets/Scenes/Chess_OnLine.unity",
               "Assets/Scenes/Menu.unity"
             ],
             "dependencyType": 0,
@@ -268,7 +268,7 @@
           {
             "name": "LightmapSettings",
             "scenes": [
-              "Assets/Scenes/Create_tyesu.unity",
+              "Assets/Scenes/Chess_OnLine.unity",
               "Assets/Scenes/Menu.unity"
             ],
             "dependencyType": 0,
@@ -289,7 +289,7 @@
           {
             "name": "Material",
             "scenes": [
-              "Assets/Scenes/Create_tyesu.unity",
+              "Assets/Scenes/Chess_OnLine.unity",
               "Assets/Scenes/Menu.unity"
             ],
             "dependencyType": 0,
@@ -298,7 +298,7 @@
           {
             "name": "Mesh",
             "scenes": [
-              "Assets/Scenes/Create_tyesu.unity",
+              "Assets/Scenes/Chess_OnLine.unity",
               "Assets/Scenes/Menu.unity"
             ],
             "dependencyType": 0,
@@ -307,7 +307,7 @@
           {
             "name": "MeshFilter",
             "scenes": [
-              "Assets/Scenes/Create_tyesu.unity",
+              "Assets/Scenes/Chess_OnLine.unity",
               "Assets/Scenes/Menu.unity"
             ],
             "dependencyType": 0,
@@ -316,7 +316,7 @@
           {
             "name": "MeshRenderer",
             "scenes": [
-              "Assets/Scenes/Create_tyesu.unity",
+              "Assets/Scenes/Chess_OnLine.unity",
               "Assets/Scenes/Menu.unity"
             ],
             "dependencyType": 0,
@@ -325,7 +325,7 @@
           {
             "name": "MonoBehaviour",
             "scenes": [
-              "Assets/Scenes/Create_tyesu.unity",
+              "Assets/Scenes/Chess_OnLine.unity",
               "Assets/Scenes/Menu.unity"
             ],
             "dependencyType": 0,
@@ -340,7 +340,7 @@
           {
             "name": "MonoScript",
             "scenes": [
-              "Assets/Scenes/Create_tyesu.unity",
+              "Assets/Scenes/Chess_OnLine.unity",
               "Assets/Scenes/Menu.unity"
             ],
             "dependencyType": 1,
@@ -349,7 +349,7 @@
           {
             "name": "NamedObject",
             "scenes": [
-              "Assets/Scenes/Create_tyesu.unity",
+              "Assets/Scenes/Chess_OnLine.unity",
               "Assets/Scenes/Menu.unity"
             ],
             "dependencyType": 1,
@@ -382,7 +382,7 @@
           {
             "name": "RectTransform",
             "scenes": [
-              "Assets/Scenes/Create_tyesu.unity",
+              "Assets/Scenes/Chess_OnLine.unity",
               "Assets/Scenes/Menu.unity"
             ],
             "dependencyType": 0,
@@ -397,7 +397,7 @@
           {
             "name": "RenderSettings",
             "scenes": [
-              "Assets/Scenes/Create_tyesu.unity",
+              "Assets/Scenes/Chess_OnLine.unity",
               "Assets/Scenes/Menu.unity"
             ],
             "dependencyType": 0,
@@ -430,7 +430,7 @@
           {
             "name": "Shader",
             "scenes": [
-              "Assets/Scenes/Create_tyesu.unity",
+              "Assets/Scenes/Chess_OnLine.unity",
               "Assets/Scenes/Menu.unity"
             ],
             "dependencyType": 0,
@@ -459,7 +459,7 @@
           {
             "name": "Sprite",
             "scenes": [
-              "Assets/Scenes/Create_tyesu.unity",
+              "Assets/Scenes/Chess_OnLine.unity",
               "Assets/Scenes/Menu.unity"
             ],
             "dependencyType": 0,
@@ -776,7 +776,7 @@
           {
             "name": "MeshCollider",
             "scenes": [
-              "Assets/Scenes/Create_tyesu.unity"
+              "Assets/Scenes/Chess_OnLine.unity"
             ],
             "dependencyType": 0,
             "icon": null
@@ -1027,7 +1027,7 @@
           {
             "name": "Font",
             "scenes": [
-              "Assets/Scenes/Create_tyesu.unity",
+              "Assets/Scenes/Chess_OnLine.unity",
               "Assets/Scenes/Menu.unity"
             ],
             "dependencyType": 0,
@@ -1071,7 +1071,7 @@
           {
             "name": "Canvas",
             "scenes": [
-              "Assets/Scenes/Create_tyesu.unity",
+              "Assets/Scenes/Chess_OnLine.unity",
               "Assets/Scenes/Menu.unity"
             ],
             "dependencyType": 0,
@@ -1088,7 +1088,7 @@
           {
             "name": "CanvasRenderer",
             "scenes": [
-              "Assets/Scenes/Create_tyesu.unity",
+              "Assets/Scenes/Chess_OnLine.unity",
               "Assets/Scenes/Menu.unity"
             ],
             "dependencyType": 0,
